@@ -1,0 +1,15 @@
+[project]
+name = "interviewapis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.123.2",
+    "langchain-openai>=1.1.0",
+    "langgraph>=1.0.4",
+    "psycopg2>=2.9.11",
+    "sqlalchemy>=2.0.44",
+    "uvicorn>=0.38.0",
+]

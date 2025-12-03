@@ -1,0 +1,151 @@
+<div class="interview-room-container">
+  <!-- Header -->
+  <div class="interview-header">
+    <h1>AI Interview Practice Room</h1>
+    <p class="subtitle">Practice with specialized AI agents for different interview types</p>
+    <button class="btn-clear" (click)="clearConversation()" *ngIf="messages.length > 1">
+      Clear Conversation
+    </button>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Chat Messages -->
+    <div class="chat-container">
+      <div class="messages-list" #messagesList>
+        <div *ngFor="let message of messages"
+             class="message"
+             [ngClass]="'message-' + message.role">
+
+          <!-- User Message -->
+          <div *ngIf="message.role === 'user'" class="message-content user-message">
+            <div class="message-header">
+              <span class="message-icon">👤</span>
+              <span class="message-label">You</span>
+              <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+            </div>
+            <div class="message-text">{{ message.content }}</div>
+          </div>
+
+          <!-- Agent Message -->
+          <div *ngIf="message.role === 'agent'" class="message-content agent-message">
+            <div class="message-header">
+              <span class="message-icon"
+                    [style.color]="getAgentColor(message.agentType || '')">🤖</span>
+              <span class="message-label">{{ formatAgentName(message.agentType || 'AI') }} Agent</span>
+              <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+            </div>
+            <div class="message-text" [innerHTML]="message.content | sanitizeHtml"></div>
+          </div>
+
+          <!-- System Message -->
+          <div *ngIf="message.role === 'system'" class="message-content system-message">
+            <div class="message-text">{{ message.content }}</div>
+          </div>
+        </div>
+
+        <!-- Streaming Content Display -->
+        <div *ngIf="isStreaming && currentAnswer" class="message message-agent">
+          <div class="message-content agent-message streaming">
+            <div class="message-header">
+              <span class="message-icon"
+                    [style.color]="getAgentColor(currentAgent)">🤖</span>
+              <span class="message-label">{{ formatAgentName(currentAgent) }} Agent</span>
+              <span class="streaming-indicator">●</span>
+            </div>
+            <div class="message-text streaming-text">{{ currentAnswer }}</div>
+          </div>
+        </div>
+
+        <!-- Routing Information -->
+        <div *ngIf="showRouting" class="routing-info">
+          <div class="routing-card">
+            <div class="routing-header">
+              <span class="routing-icon">🎯</span>
+              <span class="routing-title">Agent Selection</span>
+            </div>
+            <div class="routing-details">
+              <p><strong>Selected Agent:</strong> {{ formatAgentName(currentAgent) }}</p>
+              <p><strong>Confidence:</strong> {{ (confidence * 100).toFixed(0) }}%</p>
+              <p><strong>Reasoning:</strong> {{ routingReasoning }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Processing Status -->
+        <div *ngIf="isStreaming" class="processing-status">
+          <div class="status-indicator">
+            <span class="spinner"></span>
+            <span class="status-text">{{ streamingStatus }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Follow-up Questions -->
+      <div *ngIf="followUpQuestions.length > 0 && !isStreaming" class="follow-up-section">
+        <h3 class="follow-up-title">💡 Suggested Follow-up Questions</h3>
+        <div class="follow-up-list">
+          <button *ngFor="let followUp of followUpQuestions"
+                  class="follow-up-btn"
+                  (click)="askFollowUp(followUp)">
+            {{ followUp }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-container">
+      <!-- Context Input (Optional) -->
+      <div class="context-input" *ngIf="!context">
+        <button class="btn-context" (click)="context = ' '">
+          ➕ Add Context (Optional)
+        </button>
+      </div>
+
+      <div class="context-textarea" *ngIf="context !== ''">
+        <label>Context (e.g., your experience level, role):</label>
+        <textarea [(ngModel)]="context"
+                  placeholder="E.g., Senior Software Engineer with 5 years experience"
+                  rows="2"
+                  class="context-field"></textarea>
+      </div>
+
+      <!-- Question Input -->
+      <div class="question-input-area">
+        <textarea [(ngModel)]="question"
+                  (keydown)="onQuestionKeydown($event)"
+                  placeholder="Ask any interview question... (Press Enter to send, Shift+Enter for new line)"
+                  rows="3"
+                  class="question-input"
+                  [disabled]="isStreaming"></textarea>
+
+        <button class="btn-send"
+                (click)="sendQuestion()"
+                [disabled]="!question.trim() || isStreaming">
+          <span *ngIf="!isStreaming">Send 📤</span>
+          <span *ngIf="isStreaming">Processing...</span>
+        </button>
+      </div>
+
+      <!-- Example Questions -->
+      <div class="example-questions">
+        <p class="example-title">Try these examples:</p>
+        <div class="example-buttons">
+          <button (click)="question = 'How would you design Instagram?'" class="example-btn">
+            System Design
+          </button>
+          <button (click)="question = 'Explain the difference between REST and GraphQL'" class="example-btn">
+            Technical
+          </button>
+          <button (click)="question = 'Tell me about a time you led a team'" class="example-btn">
+            Behavioral
+          </button>
+          <button (click)="question = 'Implement a function to reverse a linked list'" class="example-btn">
+            Coding
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

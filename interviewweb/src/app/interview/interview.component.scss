@@ -1,0 +1,110 @@
+.interview-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 80px;
+  background: linear-gradient(180deg, #2c3e50 0%, #1a252f 100%);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  gap: 10px;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #3498db;
+
+    svg {
+      transform: translateY(-2px);
+    }
+  }
+
+  &.active {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+    border-left: 4px solid #3498db;
+
+    svg {
+      stroke-width: 2.5;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #3498db;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::before {
+    width: 4px;
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #f5f6fa;
+  padding: 0;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .nav-item {
+    padding: 15px 5px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-label {
+      font-size: 10px;
+    }
+  }
+}

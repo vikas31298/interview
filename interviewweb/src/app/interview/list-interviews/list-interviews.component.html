@@ -1,0 +1,180 @@
+<div class="interview-list-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h1>Interview Tracker</h1>
+    <button class="btn btn-primary" (click)="viewDetails(0)">
+      <i class="fas fa-plus"></i> Add New Interview
+    </button>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon total">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getTotalInterviews() }}</div>
+        <div class="stat-label">Total Interviews</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getActiveInterviews() }}</div>
+        <div class="stat-label">Active</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon completed">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getCompletedInterviews() }}</div>
+        <div class="stat-label">Completed</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon success">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getSuccessRate().toFixed(0) }}%</div>
+        <div class="stat-label">Success Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        placeholder="Search by company or role..." 
+        (input)="onSearch($event)"
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+
+    <div class="filter-buttons">
+      <button 
+        [class.active]="statusFilter === 'all'"
+        (click)="filterByStatus('all')"
+        class="filter-btn"
+      >
+        All
+      </button>
+      <button 
+        [class.active]="statusFilter === 'scheduled'"
+        (click)="filterByStatus('scheduled')"
+        class="filter-btn"
+      >
+        Scheduled
+      </button>
+      <button 
+        [class.active]="statusFilter === 'in_progress'"
+        (click)="filterByStatus('in_progress')"
+        class="filter-btn"
+      >
+        In Progress
+      </button>
+      <button 
+        [class.active]="statusFilter === 'completed'"
+        (click)="filterByStatus('completed')"
+        class="filter-btn"
+      >
+        Completed
+      </button>
+    </div>
+  </div>
+
+  <!-- Interview List -->
+  <div class="interviews-grid">
+    <div class="interview-card" *ngFor="let interview of filteredInterviews">
+      <!-- Company Logo/Icon -->
+      <div class="company-logo">
+        <i class="fas fa-building"></i>
+      </div>
+
+      <!-- Interview Details -->
+      <div class="interview-content">
+        <div class="interview-header">
+          <div>
+            <h3>{{ interview.company_name }}</h3>
+            <p class="role-title">{{ interview.role_name }}</p>
+          </div>
+          <div class="badges">
+            <span [ngClass]="['badge', getStatusBadgeClass(interview.interview_status)]">
+              {{ interview.interview_status | titlecase }}
+            </span>
+            <span [ngClass]="['badge', getResultBadgeClass(interview.interview_result)]">
+              {{ interview.interview_result | titlecase }}
+            </span>
+          </div>
+        </div>
+
+        <div class="interview-meta">
+          <div class="meta-item">
+            <i class="fas fa-calendar"></i>
+            <span>Applied: {{ formatDate(interview.application_date) }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-calendar-check"></i>
+            <span>Interview: {{ formatDate(interview.first_interview_date) }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-layer-group"></i>
+            <span>{{ interview.total_rounds }} Round(s)</span>
+          </div>
+          <div class="meta-item" *ngIf="interview.preparation_hours">
+            <i class="fas fa-book-open"></i>
+            <span>{{ interview.preparation_hours }}h prep</span>
+          </div>
+        </div>
+
+        <div class="interview-tags">
+          <span class="tag">{{ formatInterviewType(interview.interview_type) }}</span>
+          <span class="tag">{{ formatSeniorityLevel(interview.seniority_level) }}</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="interview-actions">
+          <button 
+            class="btn-action btn-view" 
+            (click)="viewDetails(interview.interview_id)"
+            title="View Details"
+          >
+            <i class="fas fa-eye"></i> View
+          </button>
+          <button 
+            class="btn-action btn-edit" 
+            (click)="editInterview(interview.interview_id)"
+            title="Edit"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button 
+            class="btn-action btn-delete" 
+            (click)="deleteInterview(interview.interview_id)"
+            title="Delete"
+          >
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="filteredInterviews.length === 0">
+      <i class="fas fa-inbox"></i>
+      <h3>No Interviews Found</h3>
+      <p>Try adjusting your filters or add a new interview to get started.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="architect-container">
+  <!-- Left Panel - Pattern Tiles -->
+  <div class="left-panel">
+    <div class="search-header">
+      <h2>Architecture Patterns</h2>
+      
+      <div class="search-filters">
+        <!-- Search Box -->
+        <div class="filter-group">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="onSearchChange()"
+            placeholder="Search patterns..."
+            class="search-input" />
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <select
+            [(ngModel)]="selectedCategory"
+            (ngModelChange)="onCategoryChange($event)"
+            class="filter-select">
+            <option value="all">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="patterns-grid">
+      <div
+        *ngFor="let pattern of paginatedPatterns"
+        class="pattern-card"
+        [class.selected]="selectedPattern?.id === pattern.id"
+        [style.--card-color]="pattern.color"
+        (click)="selectPattern(pattern)">
+        <div class="card-icon" [style.background]="pattern.color">
+          {{ pattern.icon }}
+        </div>
+        <div class="card-content">
+          <h3 class="pattern-title">{{ pattern.title }}</h3>
+          <span class="difficulty-badge" [ngClass]="getDifficultyClass(pattern.difficulty)">
+            {{ pattern.difficulty }}
+          </span>
+        </div>
+      </div>
+
+      <div *ngIf="filteredPatterns.length === 0" class="no-results">
+        <p>No patterns found</p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button 
+        class="pagination-btn" 
+        (click)="previousPage()" 
+        [disabled]="currentPage === 1">
+        <span>&laquo;</span>
+      </button>
+
+      <button
+        *ngFor="let page of getPageNumbers()"
+        class="pagination-btn"
+        [class.active]="page === currentPage"
+        [class.ellipsis]="page === -1"
+        [disabled]="page === -1"
+        (click)="page !== -1 && goToPage(page)">
+        {{ page === -1 ? '...' : page }}
+      </button>
+
+      <button 
+        class="pagination-btn" 
+        (click)="nextPage()" 
+        [disabled]="currentPage === totalPages">
+        <span>&raquo;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Right Panel - Content Display -->
+  <div class="right-panel">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !isLoading" class="error-state">
+      <p>{{ error }}</p>
+      <button class="btn-back" (click)="clearSelection()">Go Back</button>
+    </div>
+
+    <!-- Content View - Can display Markdown or Image -->
+    <div *ngIf="selectedPattern && !isLoading && !error" class="content-view">
+      <!-- Image Display -->
+      <div *ngIf="selectedPattern.contentType === 'image'" class="image-content">
+        <img [src]="selectedPattern.imageUrl" [alt]="selectedPattern.title" />
+      </div>
+
+      <!-- Markdown Display -->
+      <div *ngIf="selectedPattern.contentType === 'markdown' && markdownContent" 
+           class="markdown-content" 
+           [innerHTML]="markdownContent | markdown">
+      </div>
+
+      <!-- HTML Display -->
+      <div *ngIf="selectedPattern.contentType === 'html' && htmlContent" 
+           class="html-content" 
+           [innerHTML]="htmlContent | sanitizeHtml">
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!selectedPattern && !isLoading" class="empty-state">
+      <p>Select a pattern to view</p>
+    </div>
+  </div>
+</div>

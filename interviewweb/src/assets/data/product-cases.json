@@ -1,0 +1,98 @@
+[
+  {
+    "id": "metrics-for-google-maps",
+    "title": "Metrics for Google Maps",
+    "description": "Extract, Transform, Consume pipeline with GCP/AWS",
+    "icon": "🚀",
+    "category": "Data Engineering",
+    "difficulty": "Advanced",
+    "contentType": "markdown",
+    "markdownFile": "etc-pipeline-architecture.md",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "microservices",
+    "title": "Microservices Architecture",
+    "description": "Scalable microservices design patterns",
+    "icon": "🔷",
+    "category": "System Design",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/architect/microservices-arch.png",
+    "tags": ["Microservices", "Docker", "Kubernetes"],
+    "color": "#4285f4"
+  },
+  {
+    "id": "event-driven",
+    "title": "Event-Driven Architecture",
+    "description": "Asynchronous event processing patterns",
+    "icon": "⚡",
+    "category": "System Design",
+    "difficulty": "Intermediate",
+    "contentType": "html",
+    "htmlFile": "event-driven-architecture.html",
+    "tags": ["Event Sourcing", "Kafka", "Pub/Sub"],
+    "color": "#34a853"
+  },
+  {
+    "id": "serverless",
+    "title": "Serverless Architecture",
+    "description": "Cloud-native serverless patterns",
+    "icon": "☁️",
+    "category": "Cloud Computing",
+    "difficulty": "Intermediate",
+    "contentType": "markdown",
+    "markdownFile": "serverless-architecture.md",
+    "tags": ["Lambda", "Cloud Functions", "API Gateway"],
+    "color": "#fbbc04"
+  },
+  {
+    "id": "data-lake",
+    "title": "Data Lake & Lakehouse",
+    "description": "Modern data lake architecture",
+    "icon": "🏞️",
+    "category": "Data Engineering",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "assets/images/data-lake-arch.png",
+    "tags": ["Data Lake", "Delta Lake", "Spark"],
+    "color": "#ea4335"
+  },
+  {
+    "id": "ml-ops",
+    "title": "MLOps Architecture",
+    "description": "End-to-end ML pipeline design",
+    "icon": "🤖",
+    "category": "Machine Learning",
+    "difficulty": "Advanced",
+    "contentType": "markdown",
+    "markdownFile": "mlops-architecture.md",
+    "tags": ["MLOps", "Model Training", "Feature Store"],
+    "color": "#9c27b0"
+  },
+  {
+    "id": "api-design",
+    "title": "API Architecture",
+    "description": "RESTful, GraphQL, and gRPC patterns",
+    "icon": "🔌",
+    "category": "Backend",
+    "difficulty": "Intermediate",
+    "contentType": "image",
+    "imageUrl": "assets/images/api-arch.png",
+    "tags": ["REST", "GraphQL", "gRPC"],
+    "color": "#ff6f00"
+  },
+  {
+    "id": "security",
+    "title": "Security Architecture",
+    "description": "Zero-trust security model",
+    "icon": "🔒",
+    "category": "Security",
+    "difficulty": "Advanced",
+    "contentType": "markdown",
+    "markdownFile": "security-architecture.md",
+    "tags": ["Zero Trust", "OAuth", "Encryption"],
+    "color": "#d32f2f"
+  }
+]

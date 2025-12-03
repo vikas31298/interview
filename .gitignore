@@ -1,0 +1,55 @@
+# ========================================
+# ROOT / GENERAL
+# ========================================
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+nul
+
+# Log files
+*.log
+
+# ========================================
+# CLAUDE LOCAL CONFIG
+# ========================================
+.claude/
+
+# ========================================
+# PYTHON / INTERVIEWAPIS
+# ========================================
+interviewapis/__pycache__/
+interviewapis/*.py[cod]
+interviewapis/.venv/
+interviewapis/venv/
+interviewapis/.env
+interviewapis/.python-version
+interviewapis/uv.lock
+interviewapis/.mypy_cache/
+interviewapis/.pytest_cache/
+interviewapis/.vscode/
+
+# ========================================
+# ANGULAR / INTERVIEWWEB
+# ========================================
+interviewweb/node_modules/
+interviewweb/dist/
+interviewweb/.angular/
+interviewweb/.vscode/
+interviewweb/.sass-cache/
+interviewweb/.nyc_output/
+interviewweb/tmp/
+interviewweb/out-tsc/
+
+# TypeScript / VS Code
+interviewweb/*.js.map
+interviewweb/*.tsbuildinfo
+interviewweb/*.log
+
+# ========================================
+# OTHER TEMP FILES
+# ========================================
+*.tmp
+*.swp
+*.swo

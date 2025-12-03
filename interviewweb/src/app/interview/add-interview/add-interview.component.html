@@ -1,0 +1,221 @@
+<div class="add-interview-container">
+  <div class="form-header">
+    <h1>Schedule New Interview</h1>
+    <p class="subtitle">Fill in the details to schedule a new interview session</p>
+  </div>
+
+  <form [formGroup]="interviewForm" (ngSubmit)="onSubmit()" class="interview-form">
+    <!-- Candidate Information Section -->
+    <div class="form-section">
+      <h2 class="section-title">Candidate Information</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="candidateName">Candidate Name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="candidateName"
+            formControlName="candidateName"
+            class="form-control"
+            placeholder="Enter candidate's full name"
+            [class.is-invalid]="submitted && f['candidateName'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['candidateName'].errors">
+            <span *ngIf="f['candidateName'].errors['required']">Candidate name is required</span>
+            <span *ngIf="f['candidateName'].errors['minlength']">Name must be at least 2 characters</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="candidateEmail">Candidate Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="candidateEmail"
+            formControlName="candidateEmail"
+            class="form-control"
+            placeholder="candidate@example.com"
+            [class.is-invalid]="submitted && f['candidateEmail'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['candidateEmail'].errors">
+            <span *ngIf="f['candidateEmail'].errors['required']">Email is required</span>
+            <span *ngIf="f['candidateEmail'].errors['email']">Please enter a valid email</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="position">Position <span class="required">*</span></label>
+          <input
+            type="text"
+            id="position"
+            formControlName="position"
+            class="form-control"
+            placeholder="e.g., Software Engineer"
+            [class.is-invalid]="submitted && f['position'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['position'].errors">
+            <span *ngIf="f['position'].errors['required']">Position is required</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="experienceLevel">Experience Level <span class="required">*</span></label>
+          <select
+            id="experienceLevel"
+            formControlName="experienceLevel"
+            class="form-control"
+            [class.is-invalid]="submitted && f['experienceLevel'].errors">
+            <option value="">Select experience level</option>
+            <option *ngFor="let level of experienceLevels" [value]="level.value">
+              {{ level.label }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && f['experienceLevel'].errors">
+            <span>Experience level is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interview Details Section -->
+    <div class="form-section">
+      <h2 class="section-title">Interview Details</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="interviewType">Interview Type <span class="required">*</span></label>
+          <select
+            id="interviewType"
+            formControlName="interviewType"
+            class="form-control"
+            [class.is-invalid]="submitted && f['interviewType'].errors">
+            <option value="">Select interview type</option>
+            <option *ngFor="let type of interviewTypes" [value]="type.value">
+              {{ type.label }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && f['interviewType'].errors">
+            <span>Interview type is required</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration (minutes) <span class="required">*</span></label>
+          <input
+            type="number"
+            id="duration"
+            formControlName="duration"
+            class="form-control"
+            placeholder="60"
+            min="15"
+            max="240"
+            [class.is-invalid]="submitted && f['duration'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['duration'].errors">
+            <span *ngIf="f['duration'].errors['required']">Duration is required</span>
+            <span *ngIf="f['duration'].errors['min'] || f['duration'].errors['max']">Duration must be between 15 and 240 minutes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="scheduledDate">Scheduled Date <span class="required">*</span></label>
+          <input
+            type="date"
+            id="scheduledDate"
+            formControlName="scheduledDate"
+            class="form-control"
+            [class.is-invalid]="submitted && f['scheduledDate'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['scheduledDate'].errors">
+            <span>Scheduled date is required</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="scheduledTime">Scheduled Time <span class="required">*</span></label>
+          <input
+            type="time"
+            id="scheduledTime"
+            formControlName="scheduledTime"
+            class="form-control"
+            [class.is-invalid]="submitted && f['scheduledTime'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['scheduledTime'].errors">
+            <span>Scheduled time is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="location">Location / Meeting Link</label>
+        <input
+          type="text"
+          id="location"
+          formControlName="location"
+          class="form-control"
+          placeholder="e.g., Conference Room A or https://meet.google.com/xxx">
+      </div>
+    </div>
+
+    <!-- Interviewer Information Section -->
+    <div class="form-section">
+      <h2 class="section-title">Interviewer Information</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="interviewerName">Interviewer Name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="interviewerName"
+            formControlName="interviewerName"
+            class="form-control"
+            placeholder="Enter interviewer's name"
+            [class.is-invalid]="submitted && f['interviewerName'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['interviewerName'].errors">
+            <span>Interviewer name is required</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="interviewerEmail">Interviewer Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="interviewerEmail"
+            formControlName="interviewerEmail"
+            class="form-control"
+            placeholder="interviewer@example.com"
+            [class.is-invalid]="submitted && f['interviewerEmail'].errors">
+          <div class="invalid-feedback" *ngIf="submitted && f['interviewerEmail'].errors">
+            <span *ngIf="f['interviewerEmail'].errors['required']">Interviewer email is required</span>
+            <span *ngIf="f['interviewerEmail'].errors['email']">Please enter a valid email</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Notes Section -->
+    <div class="form-section">
+      <h2 class="section-title">Additional Notes</h2>
+
+      <div class="form-group full-width">
+        <label for="notes">Notes</label>
+        <textarea
+          id="notes"
+          formControlName="notes"
+          class="form-control"
+          rows="4"
+          placeholder="Add any additional notes or special instructions..."></textarea>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-outline" (click)="onReset()">
+        Reset
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Schedule Interview
+      </button>
+    </div>
+  </form>
+</div>

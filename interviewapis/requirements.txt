@@ -1,0 +1,7 @@
+langchain_openai
+dotenv          
+sqlalchemy
+fastapi
+psycopg2
+langgraph
+uvicorn
