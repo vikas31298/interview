@@ -1,8 +1,8 @@
-<div class="architect-container">
+<div class="product-management-container">
   <!-- Left Panel - Pattern Tiles -->
   <div class="left-panel">
     <div class="search-header">
-      <h2>Product Management</h2>
+      <h2>Product Management Case Studies</h2>
       
       <div class="search-filters">
         <!-- Search Box -->
@@ -11,7 +11,7 @@
             type="text"
             [(ngModel)]="searchQuery"
             (ngModelChange)="onSearchChange()"
-            placeholder="Search patterns..."
+            placeholder="Search case studies..."
             class="search-input" />
         </div>
 
@@ -49,7 +49,7 @@
       </div>
 
       <div *ngIf="filteredPatterns.length === 0" class="no-results">
-        <p>No patterns found</p>
+        <p>No case studies found</p>
       </div>
     </div>
 
@@ -116,7 +116,7 @@
 
     <!-- Empty State -->
     <div *ngIf="!selectedPattern && !isLoading" class="empty-state">
-      <p>Select a pattern to view</p>
+      <p>Select a case study to view</p>
     </div>
   </div>
 </div>

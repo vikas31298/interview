@@ -1,0 +1,78 @@
+[
+     {
+    "id": "oyr-brief",
+    "title": "OYR Brief",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-brief.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+       {
+    "id": "oyr-highlevel-arch",
+    "title": "High level Architecture",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-highlevel-arch.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "oyr-agentic-arch",
+    "title": "Agentic AI Arch",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-agentic-arch.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "oyr-failure-learnings",
+    "title": "Failure and Learnings",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-learnings.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+   {
+    "id": "oyr-competitors",
+    "title": "Competitors",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-competitors.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "oyr-mcp",
+    "title": "MCP Arch",
+    "description": "Overall summary",
+    "icon": "🚀",
+    "category": "Misc",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/oyr/oyr-mcp.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  }
+
+
+  
+ 
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "llm-models",
+    "title": "LLM Models",
+    "description": "LLM Models comparision",
+    "icon": "🚀",
+    "category": "LLM",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/frequent/llm/llm-models.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "embedding-models",
+    "title": "embedding Models",
+    "description": "LLM Models comparision",
+    "icon": "🚀",
+    "category": "LLM",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/frequent/llm/embedding-models.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "vector-databases",
+    "title": "Vector Databases",
+    "description": "Vector comparision",
+    "icon": "🚀",
+    "category": "LLM",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/frequent/llm/vector-databases.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+  {
+    "id": "agentic-ai-design-patterns",
+    "title": "Agentic Ai design patterns",
+    "description": "Agentic AI Design Patterns",
+    "icon": "🚀",
+    "category": "LLM",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/frequent/llm/agentic-ai-design-patterns.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  },
+   {
+    "id": "llm-evalution",
+    "title": "LLM Evalution",
+    "description": "LLM Evalution",
+    "icon": "🚀",
+    "category": "LLM",
+    "difficulty": "Advanced",
+    "contentType": "image",
+    "imageUrl": "answers/frequent/llm/llm-evalution.png",
+    "tags": ["GCP", "AWS", "ETL", "BigQuery", "Redshift"],
+    "color": "#667eea"
+  }
+]

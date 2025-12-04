@@ -1,0 +1,13 @@
+I started OnYourRank to democratize education using AI — built a full-stack platform with RAG-based doubt resolution, multi-agent systems, and personalized learning for competitive exam aspirants.
+What Worked
+The product. Strong engagement, users loved the AI-powered experience, and we processed 100K+ queries through our pipeline.
+What Didn't
+
+Distribution — Competing against VC-funded players burning crores on marketing with a bootstrapped budget was brutal.
+Monetization — Indian students expect free content. Conversion rates stayed below 2%, and B2B sales cycles were too slow.
+Timing — Post-2022 EdTech trust crisis made users skeptical of new platforms.
+
+We're now winding down.
+What I Learned
+Great technology isn't enough — distribution and unit economics matter just as much. I also learned when to persist versus when to be honest with yourself. The failure taught me more about building products than any success could have.
+I don't regret it. I shipped real AI systems end-to-end, and I'm a sharper product leader because of it.

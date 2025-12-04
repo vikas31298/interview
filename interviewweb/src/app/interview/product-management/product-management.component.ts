@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-interface ArchitectPattern {
+interface ProductManagementPattern {
   id: string;
   title: string;
   description: string;
@@ -24,10 +24,10 @@ interface ArchitectPattern {
   styleUrl: './product-management.component.scss'
 })
 export class ProductManagementComponent implements OnInit {
-   architectPatterns: ArchitectPattern[] = [];
-  filteredPatterns: ArchitectPattern[] = [];
-  paginatedPatterns: ArchitectPattern[] = [];
-  selectedPattern: ArchitectPattern | null = null;
+  productManagementPatterns: ProductManagementPattern[] = [];
+  filteredPatterns: ProductManagementPattern[] = [];
+  paginatedPatterns: ProductManagementPattern[] = [];
+  selectedPattern: ProductManagementPattern | null = null;
   markdownContent: string = '';
   htmlContent: string = '';
   isLoading: boolean = false;
@@ -53,25 +53,25 @@ export class ProductManagementComponent implements OnInit {
 
   loadPatternsFromJson(): void {
     this.isLoading = true;
-    this.http.get<ArchitectPattern[]>('assets/data/product-cases.json')
+    this.http.get<ProductManagementPattern[]>('assets/data/product-cases.json')
       .subscribe({
         next: (data) => {
-          this.architectPatterns = data;
-          this.filteredPatterns = [...this.architectPatterns];
+          this.productManagementPatterns = data;
+          this.filteredPatterns = [...this.productManagementPatterns];
           this.extractCategories();
           this.updatePagination();
           this.isLoading = false;
         },
         error: (err) => {
           console.error('Error loading patterns:', err);
-          this.error = 'Failed to load architecture patterns';
+          this.error = 'Failed to load product management case studies';
           this.isLoading = false;
         }
       });
   }
 
   extractCategories(): void {
-    const categorySet = new Set(this.architectPatterns.map(p => p.category));
+    const categorySet = new Set(this.productManagementPatterns.map(p => p.category));
     this.categories = Array.from(categorySet);
   }
 
@@ -88,7 +88,7 @@ export class ProductManagementComponent implements OnInit {
     this.paginatedPatterns = this.filteredPatterns.slice(startIndex, endIndex);
   }
 
-  selectPattern(pattern: ArchitectPattern): void {
+  selectPattern(pattern: ProductManagementPattern): void {
     this.selectedPattern = pattern;
     this.error = '';
     this.markdownContent = '';
@@ -103,7 +103,7 @@ export class ProductManagementComponent implements OnInit {
 
   loadMarkdownFile(filename: string): void {
     this.isLoading = true;
-    const filePath = `answers/architect/${filename}`;
+    const filePath = `answers/product-management/${filename}`;
     
     this.http.get(filePath, { responseType: 'text' })
       .subscribe({
@@ -121,7 +121,7 @@ export class ProductManagementComponent implements OnInit {
 
   loadHtmlFile(filename: string): void {
     this.isLoading = true;
-    const filePath = `answers/architect/${filename}`;
+    const filePath = `answers/product-management/${filename}`;
     
     this.http.get(filePath, { responseType: 'text' })
       .subscribe({
@@ -145,7 +145,7 @@ export class ProductManagementComponent implements OnInit {
   }
 
   filterPatterns(): void {
-    this.filteredPatterns = this.architectPatterns.filter(pattern => {
+    this.filteredPatterns = this.productManagementPatterns.filter(pattern => {
       const matchesSearch = !this.searchQuery || 
         pattern.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         pattern.description.toLowerCase().includes(this.searchQuery.toLowerCase()) ||

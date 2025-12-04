@@ -9,6 +9,7 @@ import { FrequentComponent } from './frequent/frequent.component';
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { OyrComponent } from './oyr/oyr.component';
 import { ArchitectComponent } from './architect/architect.component';
+import { BehavioralComponent } from './behavioral/behavioral.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
       { path: 'product-management', component: ProductManagementComponent },
       { path: 'oyr', component: OyrComponent },
       { path: 'architect', component: ArchitectComponent },
-      { path: 'behavioral', component: ArchitectComponent }
+      { path: 'behavioral', component: BehavioralComponent }
     ]
   }
 ];
